@@ -12,7 +12,7 @@ const actions : ActionTree<IState,IState> = {
         setTimeout(()=>{
             commit('addToCurrent',payload);
             commit('setLoadState',false);
-        },1000);
+        },2000);
     }
 }
 

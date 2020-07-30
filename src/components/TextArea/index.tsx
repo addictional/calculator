@@ -21,7 +21,7 @@ export default class TextArea extends VueComponent<Props> {
   render() {
     return (
       <div class={styles.wrapper}>
-          <p class={styles.prev}>{this.prev}</p>
+          <p class={styles.prev} style={this.prev.length > 21  ? {width : 'auto'} : {} }>{this.prev}</p>
           <p class={styles.current}>{this.current}</p>
       </div>
     )
