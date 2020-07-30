@@ -13,7 +13,7 @@ export default class App extends Vue {
   render() {
     return (
       <div class={styles.wrapper}>
-        <TextArea prev={this.$store.getters.result} current={this.$store.getters.current}/>
+        <TextArea prev={this.$store.state.prev} current={this.$store.getters.current}/>
         <InputArea/>      
       </div>
     )
