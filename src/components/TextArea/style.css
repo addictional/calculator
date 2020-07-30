@@ -1,0 +1,28 @@
+.wrapper {
+    height: 53px;
+    margin-top: 12px;
+    margin-bottom: 16px;
+    color: #ffffff;
+    text-align: right;
+    font-family: Helvetica;
+    font-style: normal;
+    font-weight: 300;
+    white-space : nowrap;
+    padding-top: 12px;
+}
+.wrapper p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.prev {
+    font-size: 18px;
+    line-height: 21px;
+    margin :0 17px 8px 17px;
+}
+
+.current {
+    font-size: 21px;
+    line-height: 24px;
+    margin : 0 17px;
+}

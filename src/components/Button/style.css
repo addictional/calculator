@@ -1,0 +1,8 @@
+.button {
+    border : 0.5px solid #979797;
+    cursor : pointer;
+    line-height: 46px;
+}
+.button:active {
+    box-shadow: inset 1px 1px 10px -1px
+}
