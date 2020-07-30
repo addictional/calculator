@@ -1,7 +1,7 @@
 .wrapper {
     height: 53px;
-    margin-top: 12px;
-    margin-bottom: 16px;
+    width: 200px;
+    margin : 12px auto 16px auto;
     color: #ffffff;
     text-align: right;
     font-family: Helvetica;
@@ -9,20 +9,20 @@
     font-weight: 300;
     white-space : nowrap;
     padding-top: 12px;
+    overflow: hidden;
 }
 .wrapper p {
-    overflow: hidden;
-    text-overflow: ellipsis;
+    float: right;
 }
 
 .prev {
     font-size: 18px;
     line-height: 21px;
-    margin :0 17px 8px 17px;
+    margin :0 0 8px 0;
+    width: 100%;
 }
 
 .current {
     font-size: 21px;
     line-height: 24px;
-    margin : 0 17px;
 }
