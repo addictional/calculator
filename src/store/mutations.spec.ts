@@ -46,6 +46,11 @@ describe('mutations check',()=>{
             const state : IState = { prev : '2 + 3 = 1' , current : '324 + 1 - 2',isLoading : false};
             addToCurrent(state,"c");
             expect(state).toEqual({ prev : '' , current : '',isLoading : false});
-        });  
+        });
+        it('can\'t add 2 or more math symbols in a row',()=>{
+            const state : IState = { prev : '' , current : '1 + ',isLoading : false};
+            addToCurrent(state,"+");
+            expect(state).toEqual({ prev : '' , current : '1 + ',isLoading : false});
+        });   
     })
 })

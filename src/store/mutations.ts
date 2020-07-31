@@ -45,6 +45,8 @@ function clearBuffer(state : IState) {
 function addMathSymbol(state : IState,symbol : MathSymbol ) {
   if(state.current.length == 0 && symbol != '+') {
     state.current= symbol;
+  } else if(state.current.length > 1 && state.current[state.current.length-1] == ' ') {
+    return;
   } else if(state.current.length > 0) {
     state.current  += ` ${symbol} `;
   }  
