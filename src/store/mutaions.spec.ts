@@ -26,12 +26,6 @@ describe('mutations check',()=>{
             expect(state.current).toEqual("");
         });
         
-        it('should ignore "+" if current string empty',()=>{
-            const state : IState = { prev : '' , current : '',isLoading : false};
-            addToCurrent(state,"+");
-            expect(state.current).toEqual("");
-        });
-        
         it('should remove "=" if "+" or  "-" added',()=>{
             const state : IState = { prev : '' , current : '',isLoading : false};
             addToCurrent(state,"3");
