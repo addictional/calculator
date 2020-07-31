@@ -3,7 +3,7 @@ import {IState} from './state';
 const {addToCurrent} = mutations;
 
 describe('mutations check',()=>{
-    describe ('test addToCurrent',()=>{
+    describe ('addToCurrent',()=>{
         it('should calculate correctly',()=>{
             const state : IState = { prev : '' , current : '324 + 1 - 2',isLoading : false};
             addToCurrent(state,"-");
@@ -34,6 +34,18 @@ describe('mutations check',()=>{
             addToCurrent(state,"=");
             addToCurrent(state,"+");
             expect(state.current).toEqual("13 + ");
+        });
+
+        it('should clear current buffer if there is "=" and symbol equal to number',()=>{
+            const state : IState = { prev : '30 + 20' , current : '= 50',isLoading : false};
+            addToCurrent(state,"3");
+            expect(state).toEqual({ prev : '30 + 20 = 50' , current : '3',isLoading : false});
+        });
+        
+        it('should clear buffer on "c" added',()=>{
+            const state : IState = { prev : '2 + 3 = 1' , current : '324 + 1 - 2',isLoading : false};
+            addToCurrent(state,"c");
+            expect(state).toEqual({ prev : '' , current : '',isLoading : false});
         });  
     })
 })
