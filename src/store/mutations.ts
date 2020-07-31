@@ -28,7 +28,7 @@ const checkIfFirstSymbolIsEqual = (state : IState , symbol : string) => {
         if(symbol === "-" || symbol === "+") {
             state.current = state.current.replace('=','').trim();
         } else {
-            state.prev = state.current;
+            state.prev += ' ' +state.current;
             state.current = ''
         }
     }
