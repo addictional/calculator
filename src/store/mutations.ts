@@ -1,6 +1,8 @@
 import {IState} from './state';
 import { MutationTree } from 'vuex';
 
+type MathSymbol = '+' | '-';
+
 function getResult (str : string) : number {
     const numbersAndOperations = str.trim().split(' ');
     let result = 0;
@@ -23,38 +25,44 @@ function getResult (str : string) : number {
     return result;
 }
 
-const checkIfFirstSymbolIsEqual = (state : IState , symbol : string) => {
-    if(state.current.length > 1 && state.current[0] === "=") {
-        state.prev += ' ' +state.current;
-        if(symbol === "-" || symbol === "+") {
-            state.current = state.current.replace('=','').trim();
-        } else {
-            state.current = ''
-        }
+function checkIfFirstSymbolIsEqualSign (state : IState , symbol : string)  {
+  if(state.current.length > 1 && state.current[0] === "=") {
+    state.prev += ' ' +state.current;
+    if(symbol === "-" || symbol === "+") {
+        state.current = state.current.replace('=','').trim();
+    } else {
+        state.current = ''
     }
+  }
+}
+
+
+function clearBuffer(state : IState) {
+  state.prev = '';
+  state.current = '';
+}
+
+function addMathSymbol(state : IState,symbol : MathSymbol ) {
+  if(state.current.length == 0 && symbol != '+') {
+    state.current= symbol;
+  } else if(state.current.length > 0) {
+    state.current  += ` ${symbol} `;
+  }  
 }
 
 
 
 const mutations : MutationTree<IState> =  {
     addToCurrent(state , symbol : string) {
-        checkIfFirstSymbolIsEqual(state,symbol);
+        checkIfFirstSymbolIsEqualSign(state,symbol);
         switch (symbol) {
           case '-':
           case '+': {
-            if(state.current.length == 0) {
-                if(symbol == '+') {
-                    break;
-                }
-                state.current= symbol;
-            } else {
-                state.current  += ` ${symbol} `;
-            }  
+            addMathSymbol(state,symbol)
             break;
           } 
           case 'c': {
-            state.current = '';
-            state.prev = '';
+            clearBuffer(state);
             break;
           }
           case '=': {
