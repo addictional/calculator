@@ -48,9 +48,18 @@ describe('mutations check',()=>{
             expect(state).toEqual({ prev : '' , current : '',isLoading : false});
         });
         it('can\'t add 2 or more math symbols in a row',()=>{
-            const state : IState = { prev : '' , current : '1 + ',isLoading : false};
+            let state : IState = { prev : '' , current : '1 + ',isLoading : false};
             addToCurrent(state,"+");
             expect(state).toEqual({ prev : '' , current : '1 + ',isLoading : false});
+            state = { prev : '' , current : '1 + ',isLoading : false};
+            addToCurrent(state,"-");
+            expect(state.current).toEqual('1 - ');
+            state = { prev : '' , current : '-',isLoading : false};
+            addToCurrent(state,"-");
+            expect(state.current).toEqual('-');
+            state = { prev : '' , current : '-',isLoading : false};
+            addToCurrent(state,"+");
+            expect(state.current).toEqual('-');
         });   
     })
 })
