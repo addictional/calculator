@@ -1,4 +1,4 @@
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Emit } from 'vue-property-decorator';
 import { VueComponent } from '../../shims-vue';
 
 import styles from './style.css?module'
@@ -8,7 +8,7 @@ export interface ButtonProps {
   color : string;
   symbol : string;
   className? : string;
-  onClick?(symbol : string) : void;  
+  click?(symbol : string) : void;  
 }
 
 @Component
@@ -25,21 +25,17 @@ export default class HelloWorld extends VueComponent<ButtonProps> {
 
   @Prop()
   private className?: string;
-  /** callback через пропсы не передаётся и инфы по этому не нашёл, пришлось здесь писать */
+
   @Prop()
-  private onClick?: (symbol : string)=>void;
-
-
-  private handleClick = () => {
-    if(this.$store.state.isLoading) {
-        return;
-    }
-    if(this.symbol !== '=') {
-        this.$store.commit('addToCurrent' , this.symbol);
-    } else {
-        this.$store.dispatch('asyncCalculation',this.symbol);
+  private click?: (symbol : string) => void;
+  /** callback через пропсы не передаётся и инфы по этому не нашёл, пришлось здесь писать */
+  @Emit()
+  handleClick() {
+    if(typeof this.click == 'function') {
+      this.click(this.symbol);
     }
   }
+  // private onClick!: (symbol : string)=>void;
 
   render() {
     const className = `${styles.button} ${this.className ? this.className : ''}`
