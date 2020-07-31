@@ -25,10 +25,10 @@ function getResult (str : string) : number {
 
 const checkIfFirstSymbolIsEqual = (state : IState , symbol : string) => {
     if(state.current.length > 1 && state.current[0] === "=") {
+        state.prev += ' ' +state.current;
         if(symbol === "-" || symbol === "+") {
             state.current = state.current.replace('=','').trim();
         } else {
-            state.prev += ' ' +state.current;
             state.current = ''
         }
     }
